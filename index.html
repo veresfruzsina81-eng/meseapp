@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MeseApp – AI mese generátor</title>
-  <meta name="theme-color" content="#0b1220" />
+  <meta name="theme-color" content="#a8d8ff" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -32,11 +32,15 @@
           <input name="theme" placeholder="Pl. űrutazás, lovagok, tündérek" />
         </label>
       </div>
+
       <div class="row">
         <label class="check"><input id="with-image" type="checkbox" checked /> Illusztrációt kérek</label>
+        <label class="check"><input id="use-own" type="checkbox" /> Saját képből dolgozzon</label>
+        <input id="own-file" type="file" accept="image/*" style="max-width:280px" />
       </div>
+
       <button id="generate" class="btn" type="submit">📖 Mesét kérek</button>
-      <p id="quota-info" class="muted">Ingyenes mód: korlátlan mesegenerálás ✅</p>
+      <p class="muted small">Ingyenes mód: korlátlan mesegenerálás ✅</p>
     </form>
 
     <section id="output" class="output hidden" aria-live="polite">
@@ -58,10 +62,9 @@
     </section>
   </main>
 
-  <!-- Könyvtár -->
   <section class="container card" id="library">
     <h2>📚 Könyvtár</h2>
-    <p class="muted small">Itt jelennek meg a mentett mesék (helyben, a böngészőben tárolva).</p>
+    <p class="muted small">A mentett mesék a böngésződben tárolódnak.</p>
     <div id="lib-list" class="lib-grid"></div>
   </section>
 
