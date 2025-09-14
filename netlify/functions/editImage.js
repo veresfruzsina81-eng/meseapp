@@ -10,15 +10,15 @@ export async function handler(event) {
     const { prompt = "Gyerekbarát illusztráció", imageDataUrl } = JSON.parse(event.body || "{}");
     if (!imageDataUrl) throw new Error("imageDataUrl hiányzik");
 
-    // dataURL -> base64 (levágjuk az elejét: "data:image/png;base64,")
+    // dataURL -> base64
     const b64 = imageDataUrl.split(",")[1];
 
-    // gpt-image-1 image-to-image szerkesztés
-    const resp = await client.images.edits({
+    // ⚡ Új API: generate image-to-image módban
+    const resp = await client.images.generate({
       model: "gpt-image-1",
       prompt,
-      image: [{ b64_json: b64 }],   // az input kép
-      size: "1024x1024"             // támogatott méret
+      size: "1024x1024",
+      image: [{ b64_json: b64 }]   // az input kép
     });
 
     const out = resp.data?.[0]?.b64_json;
