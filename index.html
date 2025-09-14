@@ -4,48 +4,73 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MeseApp – AI mese generátor</title>
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="container">
-    <h1>✨ MeseApp</h1>
+    <h1>✨ <span class="brand">MeseApp</span></h1>
     <p class="subtitle">Személyre szabott esti mesék magyarul</p>
   </header>
 
   <main class="container card">
-    <form id="story-form">
-      <label>
-        Gyerek neve
-        <input name="childName" required />
-      </label>
-      <label>
-        Kedvenc állat
-        <input name="favoriteAnimal" required />
-      </label>
-      <label>
-        Téma
-        <input name="theme" placeholder="pl. űrutazás" />
-      </label>
+    <form id="story-form" autocomplete="off">
+      <div class="grid">
+        <label>
+          Gyerek neve
+          <input name="childName" placeholder="Pl. Kiara" required />
+        </label>
+        <label>
+          Kedvenc állat
+          <input name="favoriteAnimal" placeholder="Pl. panda" required />
+        </label>
+        <label class="full">
+          Téma
+          <input name="theme" placeholder="Pl. űrutazás, lovagok, tündérek" />
+        </label>
+      </div>
       <button id="generate" class="btn" type="submit">📖 Mesét kérek</button>
       <p id="quota-info" class="muted"></p>
     </form>
 
-    <section id="output" class="hidden">
-      <article id="story"></article>
-      <button id="copy">📋 Másolás</button>
+    <section id="output" class="output hidden" aria-live="polite">
+      <div class="output-toolbar">
+        <button id="copy" class="icon-btn" type="button" title="Másolás">📋</button>
+        <button id="save" class="icon-btn" type="button" title="Letöltés .txt">💾</button>
+      </div>
+      <article id="story" class="story"></article>
     </section>
   </main>
 
-  <section id="paywall" class="hidden">
-    <div class="card modal">
-      <h2>🔓 Elérted a napi limitet</h2>
-      <p>2 mese / nap ingyen. Válassz csomagot:</p>
-      <ul>
-        <li>+3 mese – 990 Ft</li>
-        <li>+6 mese – 1999 Ft</li>
-        <li><strong>Korlátlan – 4999 Ft</strong></li>
-      </ul>
-      <button id="close-paywall">Bezár</button>
+  <!-- Paywall modal -->
+  <section id="paywall" class="hidden" aria-hidden="true">
+    <div class="overlay" data-close="overlay"></div>
+    <div class="card modal" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
+      <button id="close-paywall" class="close-btn" type="button" aria-label="Bezárás">✖</button>
+      <h2 id="paywall-title">🔓 Elérted a napi limitet</h2>
+      <p>Ma <strong>2</strong> mese ingyen. Válassz csomagot a folytatáshoz:</p>
+      <div class="prices">
+        <div class="price">
+          <h3>+3 mese</h3>
+          <p class="amount">990 Ft</p>
+          <button class="btn btn-outline" data-pack="3" type="button">Veszem</button>
+        </div>
+        <div class="price">
+          <h3>+6 mese</h3>
+          <p class="amount">1 999 Ft</p>
+          <button class="btn btn-outline" data-pack="6" type="button">Veszem</button>
+        </div>
+        <div class="price highlight">
+          <h3>Korlátlan</h3>
+          <p class="amount">4 999 Ft</p>
+          <p class="badge">Legjobb ár-érték</p>
+          <button class="btn" data-pack="unlimited" type="button">Feloldom</button>
+        </div>
+      </div>
+      <p class="muted small">A gombok egyelőre demók – Barion/Play IAP később kerül bekötésre.</p>
     </div>
   </section>
 
