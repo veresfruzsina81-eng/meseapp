@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MeseApp – AI mese generátor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>✨ MeseApp</h1>
+    <p class="subtitle">Személyre szabott esti mesék magyarul</p>
+  </header>
+
+  <main class="container card">
+    <form id="story-form">
+      <label>
+        Gyerek neve
+        <input name="childName" required />
+      </label>
+      <label>
+        Kedvenc állat
+        <input name="favoriteAnimal" required />
+      </label>
+      <label>
+        Téma
+        <input name="theme" placeholder="pl. űrutazás" />
+      </label>
+      <button id="generate" class="btn" type="submit">📖 Mesét kérek</button>
+      <p id="quota-info" class="muted"></p>
+    </form>
+
+    <section id="output" class="hidden">
+      <article id="story"></article>
+      <button id="copy">📋 Másolás</button>
+    </section>
+  </main>
+
+  <section id="paywall" class="hidden">
+    <div class="card modal">
+      <h2>🔓 Elérted a napi limitet</h2>
+      <p>2 mese / nap ingyen. Válassz csomagot:</p>
+      <ul>
+        <li>+3 mese – 990 Ft</li>
+        <li>+6 mese – 1999 Ft</li>
+        <li><strong>Korlátlan – 4999 Ft</strong></li>
+      </ul>
+      <button id="close-paywall">Bezár</button>
+    </div>
+  </section>
+
+  <footer class="container muted">
+    © 2025 MeseApp
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
